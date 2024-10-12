@@ -1,3 +1,4 @@
+import FormCard from "../_components/form/FormCard";
 import styles from "./page.module.css"
 import ProjectCard from "./ProjectCard";
 
@@ -7,7 +8,7 @@ export default function Home () {
             <div className={styles.cards}>
                 <ProjectCard/>
                 <ProjectCard/>
-                <ProjectCard/>
+                <FormCard/>
             </div> 
         </div>
     );
