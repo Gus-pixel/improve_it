@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
+
+.loginContainer, .loginBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.loginContainer {
+  width: 100%;
+  height: 100%;
+}
+
+.loginBox {
+  margin: 10vh auto;
+  width: 500px;
+  font-family: "Titillium Web", serif;
+  background-color: #060606;
+  padding: 32px 16px;
+  border-radius: 15px;
+  color: #ffffff;
+}
+
+.loginBox form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginBox form button {
+  margin-top: 20px;
+}
+
+.loginBox input {
+  padding: 5px;
+  height: 30px;
+  border-radius: 5px;
+  background-color: #ffffff;
+  color: #000000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  border: none;
+  outline: none;
+}
+
+.loginBox label {
+  font-size: 1.2em;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.loginBoxHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginBoxHeaderTitle {
+  display: flex;
+  gap: 8px;
+  font-size: 1.5em;
+  font-weight: 600;
+}
+
+.loginBoxHeaderTitle :nth-child(2) {
+  font-weight: 700;
+  color: #63adf2;
+}
+
+
