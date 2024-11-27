@@ -8,14 +8,14 @@ export default function Navbar () {
             <div className={styles.logo}>
                 <Logo/>
             </div>
-            <div className={styles.content}>
+            {/* <div className={styles.content}>
                 <Link href="/login">
                     <div>Login</div>
                 </Link>
                 <Link href="/home">
                     <div>Home</div>
                 </Link>
-            </div>
+            </div> */}
         </nav>
     );
 }

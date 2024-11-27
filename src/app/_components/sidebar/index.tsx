@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import FormularioIcon from "./FormularioIcon";
 import styles from "./index.module.css";
@@ -5,14 +6,16 @@ import LogoutIcon from "./LogoutIcon";
 import MelhoriaIcon from "./MelhoriaIcon";
 import SetorIcon from "./SetorIcon";
 import UserIcon from "./UserIcon";
+import { useContext } from "react";
+import { AuthContext } from "@/app/auth/auth";
 
 export default function Sidebar() {
+  const { setUsuario } = useContext(AuthContext);
+
   return (
     <aside className={styles.sidebar}>
       <header className={styles.sidebarHeader}>
-        <span>
-          Bem-vindo <b>Usuário</b>!
-        </span>
+        <span>Bem-vindo!</span>
       </header>
 
       <nav>
@@ -26,7 +29,7 @@ export default function Sidebar() {
             </span>
           </button>
         </Link>
-        <Link href="/formulario" className={styles.a}>
+        {/* <Link href="/formulario" className={styles.a}>
           <button>
             <span>
               <i>
@@ -35,7 +38,7 @@ export default function Sidebar() {
               <span>Formulário / Totem</span>
             </span>
           </button>
-        </Link>
+        </Link> */}
         <Link href="/melhoria" className={styles.a}>
           <button>
             <span>
@@ -56,7 +59,7 @@ export default function Sidebar() {
             </span>
           </button>
         </Link>
-        <button>
+        <button onClick={() => setUsuario(null)}>
           <span>
             <i>
               <LogoutIcon />

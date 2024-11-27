@@ -5,12 +5,14 @@ import commonStyles from "../common.module.css";
 import { UUID } from "crypto";
 import * as api from "../api/api";
 import { verifyCargoString } from "../utils";
+import { Setor } from "../setor/page";
 
 export type Usuario = {
   id: UUID;
   nome: string;
   cargo: boolean;
   status: boolean;
+  setor: Setor;
 };
 
 export type UsuarioLogin = Usuario & {
@@ -31,6 +33,7 @@ export default async function Usuario() {
               <th>Status</th>
               <th>Nome</th>
               <th>Cargo</th>
+              <th>Setor</th>
               <th>
                 <Link href="/usuario/cadastro">
                   <button className={commonStyles.botao}>Novo usuário</button>
@@ -51,6 +54,7 @@ export default async function Usuario() {
                   </td>
                   <td>{usuario.nome}</td>
                   <td>{verifyCargoString(usuario.cargo)}</td>
+                  <td>{usuario.setor.nome}</td>
                   <td>
                     <Link href={`/usuario/${usuario.id}`}>
                       <button className={commonStyles.botao}>Editar</button>

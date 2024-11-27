@@ -1,4 +1,6 @@
+import { Setor } from "./setor/page";
 import { UsuarioLogin } from "./usuario/page";
+import * as api from "./api/api";
 
 export function verifyCadastro(pathname: string) {
   if (pathname.includes("cadastro")) {
@@ -36,4 +38,9 @@ export function hideUserData(user: UsuarioLogin) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { usuario, senha, ...rest } = user;
   return rest;
+}
+
+export async function useSetores(){
+  const setores = await api.get<Setor[]>("setor");
+  return setores as Setor[];
 }
