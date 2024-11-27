@@ -1,6 +1,21 @@
+
 .barra{
-    background-color: #060606;
+    display: flex;
+    flex-direction: row;
+    color: aliceblue;
+    background-color: var(--foreground);
     padding: 5px 20px;
+    font-family: "Titillium Web", serif;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    margin-right: 50px;
 }
 
 .logo {

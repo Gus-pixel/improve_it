@@ -1,14 +1,137 @@
 .botao {
-    cursor: pointer;
-    padding: 8px 30px;
-    font-weight: 600;
-    background-color: #00a7e1;
-    width: 100%;
-    border-radius: 5px;
-    border: none;
-    color: #ffffff;
-    transition: background-color 0.8s;
-  }
-  .botao:hover {
-    background-color: #63adf2;
-  }
+  cursor: pointer;
+  padding: 8px 30px;
+  font-weight: 600;
+  background-color: var(--primary_button);
+  width: 100%;
+  border-radius: 5px;
+  border: none;
+  color: #ffffff;
+  transition: background-color 0.8s;
+}
+
+.botao:hover {
+  background-color: var(--primary);
+}
+
+.homeContainer {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  overflow: hidden;
+}
+
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  overflow-y: auto;
+  width: 100%;
+}
+
+.table {
+  border-collapse: collapse;
+  margin: 40px 0;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.table thead tr {
+  background-color: var(--secondary_background);
+  color: #ffffff;
+  text-align: left;
+}
+
+.table tr > * {
+  text-align: center;
+}
+
+.table th,
+.table td {
+  padding: 12px 15px;
+}
+
+.table th button {
+  padding: 10px;
+}
+
+
+.table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.table tbody tr:last-of-type {
+  border-bottom: 2px solid var(--secondary_background);
+}
+
+.table tbody tr.active-row {
+  font-weight: bold;
+  color: var(--secondary_background);
+}
+
+.disabled {
+  opacity: 0.5;
+}
+
+.recentDate {
+  color: var(--success);
+}
+
+.pastDate {
+  color: var(--failure);
+  font-weight: bold;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  margin: 40px 0;
+  max-width: 600px;
+  background-color: var(--background_light);
+}
+
+.form h2 {
+  margin-bottom: 10px;
+}
+
+.form p {
+  margin-bottom: 20px;
+}
+
+.form input {
+  padding: 7px;
+  border-radius: 5px;
+  border: 1px solid #dcdcdc;
+  outline: none;
+  background-color: var(--gray);
+  width: 80%;
+  text-align: center
+}
+
+.form button {
+  margin-top: 10px;
+  padding: 15px 30px;
+  width: 80%;
+}
+
+.form input:focus {
+  border: 1px solid var(--secondary_background);
+}
+
+.form label {
+  font-weight: 600;
+}

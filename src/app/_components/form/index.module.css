@@ -1,5 +1,5 @@
 .projectBox {
-    background-color: #003060;
+    background-color: var(--primary_dark);
     color: #ffffff;
     font-family: "Titillium Web", serif;
     display: flex;

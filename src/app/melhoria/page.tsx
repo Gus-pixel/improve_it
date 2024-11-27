@@ -1,8 +1,8 @@
 import CheckIcone from "../_components/check/CheckIcone";
-import commonStyles from "../common.module.css";
 import Sidebar from "../_components/sidebar";
+import commonStyles from "../common.module.css";
 
-export default function Home() {
+export default function Melhoria() {
   return (
     <div className={commonStyles.homeContainer}>
       <Sidebar />
@@ -46,5 +46,5 @@ export default function Home() {
         </table>
       </div>
     </div>
-  );
+  )
 }

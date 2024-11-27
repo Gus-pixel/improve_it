@@ -1,8 +1,8 @@
 import CheckIcone from "../_components/check/CheckIcone";
-import commonStyles from "../common.module.css";
 import Sidebar from "../_components/sidebar";
+import commonStyles from "../common.module.css";
 
-export default function Home() {
+export default function Formulario() {
   return (
     <div className={commonStyles.homeContainer}>
       <Sidebar />
@@ -12,10 +12,10 @@ export default function Home() {
             <tr>
               <th>Status</th>
               <th>Título</th>
-              <th>Problema</th>
-              <th>Data limite</th>
+              <th>Setor</th>
+              <th>Data de Criação</th>
               <th>
-                <button className={commonStyles.botao}>Nova melhoria</button>
+                <button className={commonStyles.botao}>Novo formulário</button>
               </th>
             </tr>
           </thead>
@@ -25,7 +25,7 @@ export default function Home() {
                 <CheckIcone checked />
               </td>
               <td>Melhoria de setor</td>
-              <td>bebedouro no setor quebrado</td>
+              <td>Mecanica</td>
               <td className={commonStyles.recentDate}>25/23/12</td>
               <td>
                 <button className={commonStyles.botao}>Editar</button>
@@ -36,7 +36,7 @@ export default function Home() {
                 <CheckIcone checked={false} />
               </td>
               <td>Melhoria de limpeza</td>
-              <td>Tudo sujo no almopxarifado</td>
+              <td>Mecanica</td>
               <td className={commonStyles.pastDate}>25/12/60</td>
               <td>
                 <button className={commonStyles.botao}>Editar</button>

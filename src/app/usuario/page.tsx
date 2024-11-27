@@ -1,8 +1,9 @@
+import Link from "next/link";
 import CheckIcone from "../_components/check/CheckIcone";
-import commonStyles from "../common.module.css";
 import Sidebar from "../_components/sidebar";
+import commonStyles from "../common.module.css";
 
-export default function Home() {
+export default function Usuario() {
   return (
     <div className={commonStyles.homeContainer}>
       <Sidebar />
@@ -11,11 +12,12 @@ export default function Home() {
           <thead>
             <tr>
               <th>Status</th>
-              <th>Título</th>
-              <th>Problema</th>
-              <th>Data limite</th>
+              <th>Nome</th>
+              <th>Cargo</th>
               <th>
-                <button className={commonStyles.botao}>Nova melhoria</button>
+                <Link href="/usuario/cadastro">
+                  <button className={commonStyles.botao}>Novo usuário</button>
+                </Link>
               </th>
             </tr>
           </thead>
@@ -24,9 +26,8 @@ export default function Home() {
               <td>
                 <CheckIcone checked />
               </td>
-              <td>Melhoria de setor</td>
-              <td>bebedouro no setor quebrado</td>
-              <td className={commonStyles.recentDate}>25/23/12</td>
+              <td>Gustavo</td>
+              <td>Gestor</td>
               <td>
                 <button className={commonStyles.botao}>Editar</button>
               </td>
@@ -35,9 +36,8 @@ export default function Home() {
               <td>
                 <CheckIcone checked={false} />
               </td>
-              <td>Melhoria de limpeza</td>
-              <td>Tudo sujo no almopxarifado</td>
-              <td className={commonStyles.pastDate}>25/12/60</td>
+              <td>Francisca</td>
+              <td>Funcionário</td>
               <td>
                 <button className={commonStyles.botao}>Editar</button>
               </td>

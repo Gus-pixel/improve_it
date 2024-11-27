@@ -1,0 +1,105 @@
+.border {
+  border: 1 solid red;
+}
+
+.sidebar {
+  flex: 0 1 240px;
+  max-width: 240px;
+  min-width: 72px;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 10px 30px 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  color: var(--foreground);
+  background-color: var(--background_light);
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+.sidebar > a {
+  width: 100%;
+}
+
+.sidebar button {
+  height: 60px;
+  width: 100%;
+  background: transparent;
+  border: none;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: left;
+  padding: 0;
+  transition: all 0.3s;
+  border-radius: 15px;
+}
+
+.sidebar button > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  height: 48px;
+  padding: 0 16px 0 12px;
+  line-height: 1;;
+}
+
+.sidebar button > i {
+  position: relative;
+  font-size: 28px;
+  transition: 0.2s;
+}
+
+.sidebar button:hover {
+  background-color: var(--secondary_background);
+}
+
+.userImg {
+  border-radius: 50%;
+}
+
+.sidebarHeader {
+  width: 100%;
+  margin-bottom: 16px;
+  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: var(--foreground);
+}
+
+.sidebarHeader > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sidebar > nav {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.userButton {
+  cursor: pointer;
+}
+
+@media (max-width: 920px) {
+  .sidebar {
+    width: 72px;
+    flex: 0 0 72px;
+    padding: 10px 5px;
+  }
+
+  .sidebar button > span > span{
+    display: none;
+  }
+
+  .sidebar button > span > i {
+    margin: 0 auto;
+  }
+
+  .sidebarHeader {
+    display: none;
+  }
+}
