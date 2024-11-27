@@ -8,9 +8,11 @@ import SetorIcon from "./SetorIcon";
 import UserIcon from "./UserIcon";
 import { useContext } from "react";
 import { AuthContext } from "@/app/auth/auth";
+import { useRouter } from "next/navigation";
 
 export default function Sidebar() {
   const { setUsuario } = useContext(AuthContext);
+  const router = useRouter();
 
   return (
     <aside className={styles.sidebar}>
@@ -59,7 +61,12 @@ export default function Sidebar() {
             </span>
           </button>
         </Link>
-        <button onClick={() => setUsuario(null)}>
+        <button
+          onClick={() => {
+            setUsuario(null);
+            router.push("/login");
+          }}
+        >
           <span>
             <i>
               <LogoutIcon />
