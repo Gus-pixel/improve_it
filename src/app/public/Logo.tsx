@@ -4,11 +4,11 @@ const Logo = () => (
         viewBox="-3.2 -3.2 38.40 38.40"
         xmlns="http://www.w3.org/2000/svg"
         stroke=""
-        stroke-width="0.00032"
+        strokeWidth="0.00032"
     >
         <g
             id="SVGRepo_bgCarrier"
-            stroke-width="0"
+            strokeWidth="0"
             transform="translate(1.5999999999999996,1.5999999999999996), scale(0.9)"
         >
             <rect
@@ -22,10 +22,10 @@ const Logo = () => (
         </g>
         <g
             id="SVGRepo_tracerCarrier"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             stroke="#CCCCCC"
-            stroke-width="0.128"
+            strokeWidth="0.128"
         />
         <g
             id="SVGRepo_iconCarrier"

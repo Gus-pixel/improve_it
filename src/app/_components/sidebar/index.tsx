@@ -32,7 +32,7 @@ export default function Sidebar() {
               <i>
                 <FormularioIcon />
               </i>
-              <span>Formulário</span>
+              <span>Formulário / Totem</span>
             </span>
           </button>
         </Link>

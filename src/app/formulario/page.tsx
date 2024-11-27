@@ -1,3 +1,4 @@
+import Link from "next/link";
 import CheckIcone from "../_components/check/CheckIcone";
 import Sidebar from "../_components/sidebar";
 import commonStyles from "../common.module.css";
@@ -15,7 +16,11 @@ export default function Formulario() {
               <th>Setor</th>
               <th>Data de Criação</th>
               <th>
-                <button className={commonStyles.botao}>Novo formulário</button>
+                <Link href="/formulario/cadastro">
+                  <button className={commonStyles.botao}>
+                    Novo formulário
+                  </button>
+                </Link>
               </th>
             </tr>
           </thead>

@@ -112,14 +112,15 @@
   margin-bottom: 20px;
 }
 
-.form input {
+.form input, .form select {
   padding: 7px;
   border-radius: 5px;
   border: 1px solid #dcdcdc;
   outline: none;
   background-color: var(--gray);
   width: 80%;
-  text-align: center
+  text-align: center;
+  font-size: 16px;
 }
 
 .form button {
@@ -128,8 +129,8 @@
   width: 80%;
 }
 
-.form input:focus {
-  border: 1px solid var(--secondary_background);
+.form input:focus, .form select:focus {
+  border: 1px solid var(--primary);
 }
 
 .form label {
