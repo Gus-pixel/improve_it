@@ -34,7 +34,13 @@ export default function LoginPage() {
         setor: res.setor,
       }
 
+      if (!usr.status) {
+        alert("Usuário inativo.");
+        return;
+      }
+
       setUsuario(usr);
+      localStorage.setItem("usuario", JSON.stringify(usr));
 
       router.push("/home?refresh=true");
     } catch (error) {

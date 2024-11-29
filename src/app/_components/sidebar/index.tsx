@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import FormularioIcon from "./FormularioIcon";
+// import FormularioIcon from "./FormularioIcon";
 import styles from "./index.module.css";
 import LogoutIcon from "./LogoutIcon";
 import MelhoriaIcon from "./MelhoriaIcon";
@@ -49,7 +49,7 @@ export default function Sidebar() {
         </Link>
         {isAdmin && (
           <>
-            <Link href="/formulario" className={styles.a}>
+            {/* <Link href="/formulario" className={styles.a}>
               <button>
                 <span>
                   <i>
@@ -58,7 +58,7 @@ export default function Sidebar() {
                   <span>Formulário / Totem</span>
                 </span>
               </button>
-            </Link>
+            </Link> */}
             <Link href="/setor" className={styles.a}>
               <button>
                 <span>
@@ -71,19 +71,21 @@ export default function Sidebar() {
             </Link>
           </>
         )}
-        <button
-          onClick={() => {
-            setUsuario(null);
-            router.push("/login");
-          }}
-        >
-          <span>
-            <i>
-              <LogoutIcon />
-            </i>
-            <span>Sair</span>
-          </span>
-        </button>
+        <Link href={"/login"}>
+          <button
+            onClick={() => {
+              setUsuario(null);
+              router.push("/login");
+            }}
+          >
+            <span>
+              <i>
+                <LogoutIcon />
+              </i>
+              <span>Sair</span>
+            </span>
+          </button>
+        </Link>
       </nav>
     </aside>
   );

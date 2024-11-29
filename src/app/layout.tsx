@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "./_components/navbar";
+import AuthWrapper from "./_components/authWrapper/AuthWrapper";
 import { AuthContextProvider } from "./auth/auth";
 
 const geistSans = localFont({
@@ -30,8 +31,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <AuthContextProvider>
-          <Navbar />
-          {children}
+          <AuthWrapper>
+            <Navbar />
+            {children}
+          </AuthWrapper>
         </AuthContextProvider>
       </body>
     </html>

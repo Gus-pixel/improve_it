@@ -7,11 +7,7 @@ import commonStyles from "@/app/common.module.css";
 import Sidebar from "@/app/_components/sidebar";
 import { UsuarioLogin } from "../page";
 import { AuthContext } from "@/app/auth/auth";
-
-interface Setor {
-  id: string;
-  nome: string;
-}
+import { Setor } from "@/app/setor/page";
 
 interface UsuarioCadastroProps {
   setores: Setor[];
@@ -109,7 +105,7 @@ export default function UsuarioCadastro({ setores }: UsuarioCadastroProps) {
         await api.put(`usuario/${id}`, formUsuario);
         alert("Usuário atualizado com sucesso!");
       }
-      
+
       if (isAdmin) {
         router.push("/usuario?refresh=true");
       } else {
@@ -140,11 +136,13 @@ export default function UsuarioCadastro({ setores }: UsuarioCadastroProps) {
               </select>
               <label htmlFor="setor">Setor</label>
               <select name="setor" id="setor">
-                {setores.map((setor) => (
-                  <option key={setor.id} value={setor.id}>
-                    {setor.nome}
-                  </option>
-                ))}
+                {setores
+                  .filter((setor) => setor.status)
+                  .map((setor) => (
+                    <option key={setor.id} value={setor.id}>
+                      {setor.nome}
+                    </option>
+                  ))}
               </select>{" "}
             </>
           )}

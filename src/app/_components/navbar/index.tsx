@@ -1,14 +1,17 @@
+"use client";
 import styles from "./index.module.css";
-import Logo from "../../public/Logo"
-import Link from "next/link";
+import Logo from "../../public/Logo";
+import { useContext } from "react";
+import { AuthContext } from "@/app/auth/auth";
 
-export default function Navbar () {
-    return(
-        <nav className={styles.barra}>
-            <div className={styles.logo}>
-                <Logo/>
-            </div>
-            {/* <div className={styles.content}>
+export default function Navbar() {
+  const { usuario } = useContext(AuthContext);
+  return (
+    <nav className={styles.barra}>
+      <div className={styles.logo}>
+        <Logo />
+      </div>
+      {/* <div className={styles.content}>
                 <Link href="/login">
                     <div>Login</div>
                 </Link>
@@ -16,6 +19,12 @@ export default function Navbar () {
                     <div>Home</div>
                 </Link>
             </div> */}
-        </nav>
-    );
+      {usuario && (
+        <div className={styles.content}>
+          <span>IMPROVE</span>
+          <span>IT</span>
+        </div>
+      )}
+    </nav>
+  );
 }

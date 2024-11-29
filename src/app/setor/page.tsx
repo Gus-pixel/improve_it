@@ -21,6 +21,13 @@ export default async function Setor() {
     <div className={commonStyles.homeContainer}>
       <Sidebar />
       <div className={commonStyles.pageContainer}>
+        <header className={commonStyles.header}>
+          <h1 className={commonStyles.title}>Setores</h1>
+          <p className={commonStyles.description}>
+            Bem-vindo à página de setores. Aqui você pode criar e gerenciar os
+            setores dos usuários do sistema.
+          </p>
+        </header>
         <table className={commonStyles.table}>
           <thead>
             <tr>

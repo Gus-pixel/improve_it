@@ -27,6 +27,13 @@ export default async function Usuario() {
     <div className={commonStyles.homeContainer}>
       <Sidebar />
       <div className={commonStyles.pageContainer}>
+        <header className={commonStyles.header}>
+          <h1 className={commonStyles.title}>Usuários</h1>
+          <p className={commonStyles.description}>
+            Bem-vindo à página de usuários. Aqui você pode criar e gerenciar
+            usuários do sistema.
+          </p>
+        </header>
         <table className={commonStyles.table}>
           <thead>
             <tr>
