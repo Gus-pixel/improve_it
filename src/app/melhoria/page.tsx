@@ -4,6 +4,7 @@ import Sidebar from "../_components/sidebar";
 import commonStyles from "../common.module.css";
 import { Usuario } from "../usuario/page";
 import Link from "next/link";
+import * as api from "../api/api";
 
 export type Melhoria = {
   id: UUID;
@@ -16,7 +17,9 @@ export type Melhoria = {
   pilar: string;
 };
 
-export default function Melhoria() {
+export default async function Melhoria() {
+  const melhorias = await api.get<Melhoria[]>("melhoria");
+
   return (
     <div className={commonStyles.homeContainer}>
       <Sidebar />
@@ -26,9 +29,9 @@ export default function Melhoria() {
             <tr>
               <th>Status</th>
               <th>Problema</th>
-              <th>Pilar</th>
-              <th>Funcionário</th>
-              <th>Data</th>
+              <th>Idéia de melhoria</th>
+              {/* <th>Funcionário</th> */}
+              {/* <th>Data</th> */}
               <th>Aprovação</th>
               <th>
                 <Link href="/melhoria/cadastro">
@@ -38,7 +41,22 @@ export default function Melhoria() {
             </tr>
           </thead>
           <tbody>
-            <tr>
+            {melhorias.map(melhoria => (
+              <tr key={melhoria.id}>
+                <td>
+                <CheckIcone checked={melhoria.status} />
+              </td>
+              <td>{melhoria.desc_problema}</td>
+              <td>{melhoria.desc_melhoria}</td>
+              {/* <td>{melhoria.pilar.nome}</td> */}
+              {/* <td>{melhoria.usuario.nome}</td> */}
+              {/* <td className={commonStyles.recentDate}>{String(new Date(melhoria.data))}</td> */}
+              <td>
+                <CheckIcone checked={melhoria.aprovacao} />
+              </td>
+              </tr>
+            ))}
+            {/* <tr>
               <td>
                 <CheckIcone checked />
               </td>
@@ -52,18 +70,7 @@ export default function Melhoria() {
               <td>
                 <button className={commonStyles.botao}>Ver</button>
               </td>
-            </tr>
-            <tr className={commonStyles.disabled}>
-              <td>
-                <CheckIcone checked={false} />
-              </td>
-              <td>Melhoria de limpeza</td>
-              <td>Tudo sujo no almopxarifado</td>
-              <td className={commonStyles.pastDate}>25/12/60</td>
-              <td>
-                <button className={commonStyles.botao}>Ver</button>
-              </td>
-            </tr>
+            </tr> */}
           </tbody>
         </table>
       </div>

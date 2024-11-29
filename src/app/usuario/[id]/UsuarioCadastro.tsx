@@ -1,11 +1,12 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
-import { FormEvent, useEffect } from "react";
+import { FormEvent, useContext, useEffect } from "react";
 import * as api from "@/app/api/api";
 import commonStyles from "@/app/common.module.css";
 import Sidebar from "@/app/_components/sidebar";
-import { Usuario, UsuarioLogin } from "../page";
+import { UsuarioLogin } from "../page";
+import { AuthContext } from "@/app/auth/auth";
 
 interface Setor {
   id: string;
@@ -19,6 +20,8 @@ interface UsuarioCadastroProps {
 export default function UsuarioCadastro({ setores }: UsuarioCadastroProps) {
   const pathname = usePathname();
   const router = useRouter();
+  const { usuario } = useContext(AuthContext);
+  const isAdmin = usuario?.cargo;
   const isEditing = !pathname.includes("cadastro");
   const id = pathname.split("/")[2];
 
@@ -60,7 +63,9 @@ export default function UsuarioCadastro({ setores }: UsuarioCadastroProps) {
         setorElement.value = usuario.setor.id;
       }
 
-      const usuarioElement = document.getElementById("usuario") as HTMLInputElement;
+      const usuarioElement = document.getElementById(
+        "usuario"
+      ) as HTMLInputElement;
       if (usuarioElement) {
         usuarioElement.value = usuario.usuario;
       }
@@ -69,7 +74,6 @@ export default function UsuarioCadastro({ setores }: UsuarioCadastroProps) {
       if (senhaElement) {
         senhaElement.value = usuario.senha;
       }
-
     } catch (error) {
       console.error("Erro ao buscar usuário:", error);
     }
@@ -78,25 +82,39 @@ export default function UsuarioCadastro({ setores }: UsuarioCadastroProps) {
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
+    let formUsuario = {};
 
-    const newUsuario = {
-      nome: formData.get("nome"),
-      status: formData.get("status") === "ativo",
-      cargo: formData.get("cargo") === "gestor",
-      id_setor: formData.get("setor"),
-      usuario: formData.get("usuario"),
-      senha: formData.get("senha"),
-    };
+    if (!isAdmin) {
+      formUsuario = {
+        nome: formData.get("nome"),
+        usuario: formData.get("usuario"),
+        senha: formData.get("senha"),
+      };
+    } else {
+      formUsuario = {
+        nome: formData.get("nome"),
+        status: formData.get("status") === "ativo",
+        cargo: formData.get("cargo") === "gestor",
+        id_setor: formData.get("setor"),
+        usuario: formData.get("usuario"),
+        senha: formData.get("senha"),
+      };
+    }
 
     try {
       if (!isEditing) {
-        await api.post("usuario", newUsuario);
+        await api.post("usuario", formUsuario);
         alert("Usuário cadastrado com sucesso!");
       } else {
-        await api.put(`usuario/${id}`, newUsuario);
+        await api.put(`usuario/${id}`, formUsuario);
         alert("Usuário atualizado com sucesso!");
       }
-      router.push("/usuario?refresh=true");
+      
+      if (isAdmin) {
+        router.push("/usuario?refresh=true");
+      } else {
+        router.push("/home");
+      }
     } catch (error) {
       alert(`Erro ao salvar usuário: ${error}`);
     }
@@ -108,26 +126,30 @@ export default function UsuarioCadastro({ setores }: UsuarioCadastroProps) {
       <div className={commonStyles.pageContainer}>
         <form className={commonStyles.form} onSubmit={handleSubmit}>
           <h2>Usuário</h2>
+          {isAdmin && (
+            <>
+              <label htmlFor="status">Status</label>
+              <select name="status" id="status">
+                <option value="ativo">Ativo</option>
+                <option value="inativo">Inativo</option>
+              </select>
+              <label htmlFor="cargo">Cargo</label>
+              <select name="cargo" id="cargo">
+                <option value="gestor">Gestor</option>
+                <option value="funcionario">Funcionário</option>
+              </select>
+              <label htmlFor="setor">Setor</label>
+              <select name="setor" id="setor">
+                {setores.map((setor) => (
+                  <option key={setor.id} value={setor.id}>
+                    {setor.nome}
+                  </option>
+                ))}
+              </select>{" "}
+            </>
+          )}
           <label htmlFor="nome">Nome</label>
           <input type="text" id="nome" name="nome" />
-          <label htmlFor="status">Status</label>
-          <select name="status" id="status">
-            <option value="ativo">Ativo</option>
-            <option value="inativo">Inativo</option>
-          </select>
-          <label htmlFor="cargo">Cargo</label>
-          <select name="cargo" id="cargo">
-            <option value="gestor">Gestor</option>
-            <option value="funcionario">Funcionário</option>
-          </select>
-          <label htmlFor="setor">Setor</label>
-          <select name="setor" id="setor">
-            {setores.map((setor) => (
-              <option key={setor.id} value={setor.id}>
-                {setor.nome}
-              </option>
-            ))}
-          </select>
           <label htmlFor="usuario">Usuário</label>
           <input type="text" id="usuario" name="usuario" />
           <label htmlFor="senha">Senha</label>

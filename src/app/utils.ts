@@ -1,6 +1,7 @@
 import { Setor } from "./setor/page";
 import { UsuarioLogin } from "./usuario/page";
 import * as api from "./api/api";
+import { Pilar } from "./melhoria/[id]/MelhoriaCadastro";
 
 export function verifyCadastro(pathname: string) {
   if (pathname.includes("cadastro")) {
@@ -43,4 +44,9 @@ export function hideUserData(user: UsuarioLogin) {
 export async function useSetores(){
   const setores = await api.get<Setor[]>("setor");
   return setores as Setor[];
+}
+
+export async function usePilares() {
+  const pilares = await api.get<Pilar[]>("pilar");
+  return pilares as Pilar[];
 }

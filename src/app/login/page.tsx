@@ -1,7 +1,6 @@
 "use client";
 
-import React, { FormEvent, useContext, useState } from "react";
-import Link from "next/link";
+import React, { FormEvent, useContext } from "react";
 import styles from "./page.module.css";
 import commonStyles from "../common.module.css";
 import Logo from "../public/Logo";
@@ -9,40 +8,39 @@ import clsx from "clsx";
 import { AuthContext } from "../auth/auth";
 import * as api from "../api/api";
 import { useRouter } from "next/navigation";
-import { randomUUID } from "crypto";
+import { UsuarioLogin } from "../usuario/page";
 
 export default function LoginPage() {
-  const { usuario, setUsuario } = useContext(AuthContext);
-  const [usuarioSt, setUsuarioSt] = useState("");
-  const [senha, setSenha] = useState("");
+  const { setUsuario } = useContext(AuthContext);
   const router = useRouter();
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    const usuarioData = {
-      cargo: true,
-      status: true,
+    const form = event.target as HTMLFormElement;
+    const usuarioLogin = {
+      usuario: form.usuario.value,
+      senha: form.senha.value,
     };
 
-    if (usuarioSt === "admin" && senha === "123456") {
-      setUsuario(usuarioData);
+    try {
+      const res = await api.post<UsuarioLogin>("login", usuarioLogin);
+
+      const usr = {
+        id: res.id,
+        nome: res.nome,
+        cargo: res.cargo,
+        status: res.status,
+        setor: res.setor,
+      }
+
+      setUsuario(usr);
+
       router.push("/home?refresh=true");
+    } catch (error) {
+      console.error("Erro ao realizar login:", error);
+      alert("Usuário ou senha inválidos.");
     }
-
-    setUsuario(usuarioData);
-
-    // try {
-    //   await api.post("usuario", usuarioData);
-    //   alert("Login efetuado!");
-    //   router.push("/home?refresh=true");
-    // } catch (error) {
-    //   alert(`Credenciais invalidas`);
-    // }
-  }
-
-  if (usuario) {
-    router.push("/home?refresh=true");
   }
 
   return (
@@ -52,22 +50,10 @@ export default function LoginPage() {
           <h2>Faça seu Login</h2>
           <form onSubmit={handleSubmit}>
             <label htmlFor="usuario">Usuário</label>
-            <input
-              type="text"
-              id="usuario"
-              name="usuario"
-              value={usuarioSt}
-              onChange={(e) => setUsuarioSt(e.target.value)}
-            />
+            <input type="text" id="usuario" name="usuario" />
 
             <label htmlFor="senha">Senha</label>
-            <input
-              type="password"
-              id="senha"
-              name="senha"
-              value={senha}
-              onChange={(e) => setSenha(e.target.value)}
-            />
+            <input type="password" id="senha" name="senha" />
             <button className={clsx(commonStyles.botao, styles.botao)}>
               ENTRAR
             </button>

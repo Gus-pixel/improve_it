@@ -11,17 +11,23 @@ import { AuthContext } from "@/app/auth/auth";
 import { useRouter } from "next/navigation";
 
 export default function Sidebar() {
-  const { setUsuario } = useContext(AuthContext);
+  const { usuario, setUsuario } = useContext(AuthContext);
   const router = useRouter();
+  const isAdmin = usuario?.cargo;
 
   return (
     <aside className={styles.sidebar}>
       <header className={styles.sidebarHeader}>
-        <span>Bem-vindo!</span>
+        <span>
+          Bem-vindo <b>{usuario?.nome}</b>!
+        </span>
       </header>
 
       <nav>
-        <Link href="/usuario" className={styles.a}>
+        <Link
+          href={isAdmin ? "/usuario" : `/usuario/${usuario?.id}`}
+          className={styles.a}
+        >
           <button>
             <span>
               <i>
@@ -31,16 +37,6 @@ export default function Sidebar() {
             </span>
           </button>
         </Link>
-        {/* <Link href="/formulario" className={styles.a}>
-          <button>
-            <span>
-              <i>
-                <FormularioIcon />
-              </i>
-              <span>Formulário / Totem</span>
-            </span>
-          </button>
-        </Link> */}
         <Link href="/melhoria" className={styles.a}>
           <button>
             <span>
@@ -51,16 +47,30 @@ export default function Sidebar() {
             </span>
           </button>
         </Link>
-        <Link href="/setor" className={styles.a}>
-          <button>
-            <span>
-              <i>
-                <SetorIcon />
-              </i>
-              <span>Setor</span>
-            </span>
-          </button>
-        </Link>
+        {isAdmin && (
+          <>
+            <Link href="/formulario" className={styles.a}>
+              <button>
+                <span>
+                  <i>
+                    <FormularioIcon />
+                  </i>
+                  <span>Formulário / Totem</span>
+                </span>
+              </button>
+            </Link>
+            <Link href="/setor" className={styles.a}>
+              <button>
+                <span>
+                  <i>
+                    <SetorIcon />
+                  </i>
+                  <span>Setor</span>
+                </span>
+              </button>
+            </Link>
+          </>
+        )}
         <button
           onClick={() => {
             setUsuario(null);

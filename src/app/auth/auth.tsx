@@ -1,11 +1,11 @@
 "use client";
 
 import { createContext, useState } from "react";
-import { UsuarioLogin } from "../usuario/page";
+import { Usuario } from "../usuario/page";
 
 export type AuthContextType = {
-  usuario: object | null;
-  setUsuario: (usuario: object | null) => void;
+  usuario: Usuario | null;
+  setUsuario: (usuario: Usuario | null) => void;
 };
 
 export const AuthContext = createContext<AuthContextType>({
@@ -19,7 +19,7 @@ export function AuthContextProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [usuario, setUsuario] = useState<object | null>(null);
+  const [usuario, setUsuario] = useState<Usuario | null>(null);
 
   return (
     <AuthContext.Provider value={{ usuario, setUsuario }}>
